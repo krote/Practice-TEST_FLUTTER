@@ -20,6 +20,27 @@ class _SearchScreenState extends State<SearchScreen> {
             appBar: AppBar(
                 title: const Text('Qiita Search'),
             ),
+            // サイドバーを表示する
+            drawer: Drawer(
+                child: ListView(
+                    children: [
+                        DrawerHeader(
+                            decoration: BoxDecoration(color: Colors.lightBlue),
+                            child: Text('TestApp'),
+                        ),
+                        ListTile(
+                            title: Text('item1'),
+                            textColor: Colors.black,
+                            onTap: (){},
+                        ),
+                        ListTile(
+                            title: Text('item2'),
+                            textColor: Colors.red,
+                            onTap: (){},
+                        ),
+                    ],
+                ),
+            ),
             body: Column(
                 children: [
                     //
@@ -43,6 +64,12 @@ class _SearchScreenState extends State<SearchScreen> {
                                 setState(()=>articles = results);
                             },
                         ),
+                    ),
+                    CalendarDatePicker(
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.parse('2023-01-01 00:00:00Z'),
+                        lastDate: DateTime.parse('2025-01-01 00:00:00Z'),
+                        onDateChanged: onChangeDateTime(),
                     ),
                     // 検索結果一覧
                     Expanded(
@@ -81,6 +108,12 @@ class _SearchScreenState extends State<SearchScreen> {
             debugPrint('api call error : $res.statusCode');
             return [];
         }
+    }
+
+    ValueChanged<DateTime> onChangeDateTime(DateTime value){
+        return ValueChanged<DateTime>(
+            //
+        );
     }
 }
 
