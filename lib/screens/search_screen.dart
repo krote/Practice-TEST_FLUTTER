@@ -5,6 +5,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:test_flutter/models/article.dart';
 import 'package:test_flutter/components/article_container.dart';
 
+import 'package:test_flutter/screens/booking_1on1.dart';
+
 class SearchScreen extends StatefulWidget {
     const SearchScreen({super.key});
 
@@ -14,6 +16,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
     List<Article> articles = [];
+    String dateValue ="";
     @override
     Widget build(BuildContext context){
         return Scaffold(
@@ -31,7 +34,14 @@ class _SearchScreenState extends State<SearchScreen> {
                         ListTile(
                             title: Text('item1'),
                             textColor: Colors.black,
-                            onTap: (){},
+                            onTap: (){
+                                // 1on1予約画面へ移動
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: ((context) => Booking1on1Screen()),
+                                    ),
+                                );
+                            },
                         ),
                         ListTile(
                             title: Text('item2'),
@@ -65,11 +75,12 @@ class _SearchScreenState extends State<SearchScreen> {
                             },
                         ),
                     ),
+                    // カレンダーを表示
                     CalendarDatePicker(
                         initialDate: DateTime.now(),
                         firstDate: DateTime.parse('2023-01-01 00:00:00Z'),
                         lastDate: DateTime.parse('2025-01-01 00:00:00Z'),
-                        onDateChanged: onChangeDateTime(),
+                        onDateChanged: (DateTime value){dateValue = value.toString();},
                     ),
                     // 検索結果一覧
                     Expanded(
@@ -110,10 +121,5 @@ class _SearchScreenState extends State<SearchScreen> {
         }
     }
 
-    ValueChanged<DateTime> onChangeDateTime(DateTime value){
-        return ValueChanged<DateTime>(
-            //
-        );
-    }
 }
 
