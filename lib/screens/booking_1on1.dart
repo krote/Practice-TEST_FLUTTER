@@ -65,6 +65,35 @@ class _Booking1on1Screen extends State<Booking1on1Screen> {
                             ),
                         ]
                     ),
+                    Row(
+                        children: [
+                            SizedBox(
+                                width: 100,
+                                child: Text(
+                                    "面談内容",
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                    ),
+                                ),
+                            ),
+                        ]
+                    ),
+                    Row(
+                        children: [
+                            SizedBox(
+                                width:300,
+                                child: TextField(
+                                    maxLines: 5,
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                    ),
+                                ),
+                            ),
+                        ]
+                    ),
+                    BackButton(),
                 ],
             ),
         );
