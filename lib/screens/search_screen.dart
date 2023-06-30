@@ -6,6 +6,7 @@ import 'package:test_flutter/models/article.dart';
 import 'package:test_flutter/components/article_container.dart';
 
 import 'package:test_flutter/screens/booking_1on1.dart';
+import 'package:test_flutter/screens/start1on1_screen.dart';
 
 class SearchScreen extends StatefulWidget {
     const SearchScreen({super.key});
@@ -32,7 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             child: Text('TestApp'),
                         ),
                         ListTile(
-                            title: Text('item1'),
+                            title: Text('Booking 1on1'),
                             textColor: Colors.black,
                             onTap: (){
                                 // 1on1予約画面へ移動
@@ -44,9 +45,16 @@ class _SearchScreenState extends State<SearchScreen> {
                             },
                         ),
                         ListTile(
-                            title: Text('item2'),
+                            title: Text('Start 1on1'),
                             textColor: Colors.red,
-                            onTap: (){},
+                            onTap: (){
+                                // 1on1予約画面へ移動
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: ((context) => Start1on1Screen()),
+                                    ),
+                                );
+                            }
                         ),
                     ],
                 ),

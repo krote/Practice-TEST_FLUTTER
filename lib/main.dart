@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Qiita Search',
-      theme: ThemeData(
+      /*theme: ThemeData(
         primarySwatch: Colors.green,
         fontFamily: 'Hiragino Sans',
         appBarTheme: const AppBarTheme(
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(
           bodyColor: Colors.white,
         ),
-      ),
+      ),*/
       home: const SearchScreen(),
     );
   }
