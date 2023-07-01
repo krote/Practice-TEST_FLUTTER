@@ -40,6 +40,7 @@ dependencies:
   intl: ^0.18.1
   webview_flutter: 3.0.4
   flutter_webrtc: ^0.9.34
+  sdp_transform: ^0.3.2
 
 dev_dependencies:
   flutter_test:
