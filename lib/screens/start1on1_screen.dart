@@ -22,6 +22,10 @@ class _Start1on1Screen extends State<Start1on1Screen>{
     RTCPeerConnection? _peerConnection;
     MediaStream? _localStream;
 
+    String offerText = "";
+    String answerText = "";
+    String candidateText= "";
+
     void initRenderers() async {
         await _localVideoRenderer.initialize();
         await _remoteVideoRenderer.initialize();
@@ -106,6 +110,8 @@ class _Start1on1Screen extends State<Start1on1Screen>{
         print(json.encode(session));
         print("offer end *****");
         _offer = true;
+        offerText = json.encode(session);
+        offerController.text = offerText;
 
         _peerConnection!.setLocalDescription(description);
     }
@@ -117,6 +123,8 @@ class _Start1on1Screen extends State<Start1on1Screen>{
         print("answer start *****");
         print(json.encode(session));
         print("answer end *****");
+        answerText = json.encode(session);
+        answerController.text = answerText;
 
         _peerConnection!.setLocalDescription(description);
     }
@@ -129,12 +137,13 @@ class _Start1on1Screen extends State<Start1on1Screen>{
 
         RTCSessionDescription description = new RTCSessionDescription(sdp, _offer ? 'answer':'offer');
         print(description.toMap());
+        candidateController.text(description.toMap());
 
         await _peerConnection!.setRemoteDescription(description);
     }
 
     void _addCandidate() async {
-        String jsonString = sdpController.text;
+        String jsonString = candidateController.text;
         print("sdpController:" + jsonString);
         dynamic session = await jsonDecode(jsonString);
         print(session['candidate']);
@@ -154,19 +163,57 @@ class _Start1on1Screen extends State<Start1on1Screen>{
             ),
             body: Column(
                 children: [
+                    Row(
+                        children:[
+                            Expanded(
+                                child: Text("local"),
+                            ),
+                            Expanded(
+                                child: Text("Remote"),
+                            ),
+                        ],
+                    ),
                     videoRenderers(),
                     Row(
                         children:[
                             Padding(
                                 padding: const EdgeInsets.all(16.0),
-                                child: SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.5,
-                                    child: TextField(
-                                        controller: sdpController,
-                                        keyboardType: TextInputType.multiline,
-                                        maxLines: 4,
-                                        maxLength: TextField.noMaxLength,
-                                    ),
+                                child: Column(
+                                    children: [
+                                        SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.5,
+                                            child: TextField(
+                                                controller: offerController,
+                                                keyboardType: TextInputType.multiline,
+                                                maxLines: 4,
+                                                maxLength: TextField.noMaxLength,
+                                                decoration : InputDecoration(
+                                                    border: OutlineInputBorder(),
+                                                    labelText: 'OfferText'
+                                                )
+                                            ),
+                                            child: TextField(
+                                                controller: answerController,
+                                                keyboardType: TextInputType.multiline,
+                                                maxLines: 4,
+                                                maxLength: TextField.noMaxLength,
+                                                decoration : InputDecoration(
+                                                    border: OutlineInputBorder(),
+                                                    labelText: 'AnswerText'
+                                                )
+                                            ),
+                                            child: TextField(
+                                                controller: candidateController,
+                                                keyboardType: TextInputType.multiline,
+                                                maxLines: 4,
+                                                maxLength: TextField.noMaxLength,
+                                                decoration : InputDecoration(
+                                                    border: OutlineInputBorder(),
+                                                    labelText: 'CandidateText'
+                                                )
+                                            ),
+                                        ),
+                                    ],
                                 ),
                             ),
                             Column(
