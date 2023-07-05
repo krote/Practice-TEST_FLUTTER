@@ -40,7 +40,7 @@ class WavePointer extends CustomPainter{
             points.add(
                 Offset(
                     i / (src.length / 2) * constraints.maxWidth,
-                    project(src[i]), absMax, constraints.maxHeight),
+                    project(src[i], absMax, constraints.maxHeight),
                 ),
             );
         }
