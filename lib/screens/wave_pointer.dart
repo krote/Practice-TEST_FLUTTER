@@ -6,10 +6,10 @@ class WavePointer extends CustomPainter{
     final _heightOffset = 0.25;
     BoxConstraints constraints;
     List<double> wave_src;
-    List<double> points;
+//    List<Offset> points;
     Color color;
 
-    Size size;
+//    Size size;
 
     // Set max val possible in stream, dependeing on the config
     final absMax = 30;
@@ -23,7 +23,7 @@ class WavePointer extends CustomPainter{
         ..style = PaintingStyle.stroke;
 
         // 得られたデータをオフセットのリストに変換する
-        points = toPoints(wave_src);
+        List<Offset> points = toPoints(wave_src);
 
         // addPolygon で path をつくり drawPath でグラフを表現する
         final path = Path()..addPolygon(points, false);
@@ -34,7 +34,7 @@ class WavePointer extends CustomPainter{
     bool shouldRepaint(CustomPainter oldPainting) => true;
 
     // 得られたデータを等間隔に並べていく
-    List<Offset> toPaints(List<double> src){
+    List<Offset> toPoints(List<double> src){
         final points = <Offset>[];
         for(var i = 0; i< (src.length/2); i++){
             points.add(
