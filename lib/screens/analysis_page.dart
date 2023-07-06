@@ -26,7 +26,7 @@ class AnalysisPage extends StatelessWidget {
                                 LayoutBuilder(
                                     builder: (BuildContext context, BoxConstraints constraints){
                                         return CustomPaint(
-                                            painter: WavePainter(model.spectrum, Colors.blue, constraints),
+                                            painter: WavePainter(model.audio, Colors.blue, constraints),
                                         );
                                     },
                                 ),
