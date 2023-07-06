@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WavePointer extends CustomPainter{
-    WavePointer(this.wave_src, this.color, this.constraints);
+class WavePainter extends CustomPainter{
+    WavePainter(this.wave_src, this.color, this.constraints);
 
     final _heightOffset = 0.25;
     BoxConstraints constraints;

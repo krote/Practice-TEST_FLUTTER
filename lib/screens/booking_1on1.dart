@@ -62,7 +62,7 @@ class _Booking1on1Screen extends State<Booking1on1Screen> {
                                 width:200,
                                 child: TextField(
                                     decoration: InputDecoration(
-                                        hintText: '面談者を入力してください',
+                                        hintText: '面談日を入力してください',
                                         border: OutlineInputBorder(),
                                     ),
                                     style: const TextStyle(

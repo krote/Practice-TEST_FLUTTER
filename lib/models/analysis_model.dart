@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:fft/fft.dart';
+import 'package:fftea/fftea.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_streamer/audio_streamer.dart';
 import 'package:dart_numerics/dart_numerics.dart';
@@ -21,17 +21,17 @@ class AnalysisModel extends ChangeNotifier {
         }
 
         // 窓掛け処理を行う
-        final window = Window(WindowType.HAMING);
+        final window = Window(WindowType.HAMMING);
         final windowed = window.apply(audio);
 
         // フーリエ変換
-        final fft = FFT().Transform(windowed);
+        final fft = FFT(_windowLength).Transform(windowed);
         for(var i = 0; i < _windowLength / 2; i++){
             // パワースペクトルを dB 単位に変換
             final tmpPower = (fft[i] * fft[i].conjugate).real / _windowLength;
             spectrum[i] = - (10 * log10(tmpPower)); // canvasが下方向に正のため反転している
         }
-        notifyListerners();
+        notifyListeners();
     }
     
     void handleError(PlatformException error){
@@ -47,12 +47,12 @@ class AnalysisModel extends ChangeNotifier {
         }catch(error){
             print(error);
         }
-        notifyListerners();
+        notifyListeners();
     }
 
     Future<void> stop() async{
         final stopped = await _streamer.stop();
         isRecording = stopped;
-        notifyListerners();
+        notifyListeners();
     }
 }
