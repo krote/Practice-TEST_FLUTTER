@@ -19,7 +19,7 @@ class _CarouselPageState extends State<CarouselPage> {
   int currentIndex = 0;
 
   @override
-  Widge build(BuildContext context) {
+  Widget build(BuildContext context) {
     final pages = widget.pages;
     final pageLength = pages.length;
     final color =
@@ -29,7 +29,7 @@ class _CarouselPageState extends State<CarouselPage> {
       children: [
         PageView(
           onPageChanged: (value) {
-            setState((){
+            setState(() {
               currentIndex = value;
             });
           },
@@ -40,8 +40,8 @@ class _CarouselPageState extends State<CarouselPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
-              pageLength, 
-              (index)  {
+              pageLength,
+              (index) {
                 return Container(
                   margin: const EdgeInsets.all(4),
                   width: 12,
@@ -51,13 +51,12 @@ class _CarouselPageState extends State<CarouselPage> {
                     shape: BoxShape.circle,
                     border: Border.all(color: color),
                   ),
-                  )
+                );
               },
             ),
           ),
         )
-
       ],
-    )
+    );
   }
 }
