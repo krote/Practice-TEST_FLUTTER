@@ -9,6 +9,7 @@ import 'package:test_flutter/screens/booking_1on1.dart';
 import 'package:test_flutter/screens/start1on1_screen.dart';
 import 'package:test_flutter/screens/analysis_page.dart';
 import 'package:test_flutter/screens/carousel_page.dart';
+import 'package:test_flutter/components/dialog_utils.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -154,6 +155,26 @@ class _SearchScreenState extends State<SearchScreen> {
             onDateChanged: (DateTime value) {
               dateValue = value.toString();
             },
+          ),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  DialogUtils.showOnlyTitleDialog(context, 'show only');
+                },
+                child: const Text('タイトルのみ'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final result =
+                      await DialogUtils.showEditingDialog(context, dateValue);
+                  setState(() {
+                    dateValue = result ?? dateValue;
+                  });
+                },
+                child: Text('$dateValue これを編集する'),
+              ),
+            ],
           ),
           // 検索結果一覧
           Expanded(

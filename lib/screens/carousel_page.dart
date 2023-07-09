@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// reference: https://zenn.dev/pressedkonbu/books/flutter-reverse-lookup-dictionary/viewer/012-page-scroll
+
 class CarouselPage extends StatefulWidget {
   const CarouselPage({
     Key? key,
