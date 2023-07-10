@@ -20,7 +20,9 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   List<Article> articles = [];
-  String dateValue = "";
+  String? dateValue = "";
+  String? title = "";
+  String? person = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,6 +175,18 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
                 child: Text('$dateValue これを編集する'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final result = await DialogUtils.showEditingRecordDialog(
+                      context, title, person, dateValue);
+                  setState(() {
+                    title = result?.$1;
+                    person = result?.$2;
+                    dateValue = result?.$3;
+                  });
+                },
+                child: Text('$title, $person, $dateValue これを編集する'),
               ),
             ],
           ),
