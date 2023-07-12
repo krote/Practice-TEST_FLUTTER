@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:test_flutter/components/t_home_menu.dart';
+
 class THomePage extends StatefulWidget {
   const THomePage({Key? key}) : super(key: key);
 
@@ -39,6 +41,20 @@ class _THomePageState extends State<THomePage> {
                   children: [
                     Icon(Icons.wind_power),
                     Icon(Icons.light),
+                  ],
+                ),
+                const Text("共通"),
+                GridView.count(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 4.0,
+                  mainAxisSpacing: 4.0,
+                  shrinkWrap: true,
+                  children: [
+                    THomeMenuTile(menuID: 'Menu1'),
+                    THomeMenuTile(menuID: 'Menu2'),
+                    THomeMenuTile(menuID: 'Menu3'),
+                    THomeMenuTile(menuID: 'Menu4'),
+                    THomeMenuTile(menuID: 'Menu5'),
                   ],
                 ),
               ],
