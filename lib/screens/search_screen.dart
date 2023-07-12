@@ -10,7 +10,9 @@ import 'package:test_flutter/screens/start1on1_screen.dart';
 import 'package:test_flutter/screens/analysis_page.dart';
 import 'package:test_flutter/screens/carousel_page.dart';
 import 'package:test_flutter/components/dialog_utils.dart';
+import 'package:test_flutter/screens/t_home.dart';
 import 'package:test_flutter/screens/zip_search.dart';
+import 'package:test_flutter/screens/t_home.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -131,6 +133,17 @@ class _SearchScreenState extends State<SearchScreen> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: ((context) => ZipSearchPage()),
+                    ),
+                  );
+                }),
+            ListTile(
+                title: Text('T Home'),
+                textColor: Colors.red,
+                onTap: () {
+                  // 1on1予約画面へ移動
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => THomePage()),
                     ),
                   );
                 }),
