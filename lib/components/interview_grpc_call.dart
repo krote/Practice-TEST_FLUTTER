@@ -25,7 +25,7 @@ final nameProvider = StateProvider.autoDispose<String>((ref) {
   return '';
 });
 
-final interviewProvider = FutreProvider.autoDispose<String>((ref) async {
+final interviewProvider = FutureProvider.autoDispose<String>((ref) async {
   final channel = ref.watch(channelProvider);
 
   final name = ref.watch(nameProvider);
